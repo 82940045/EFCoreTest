@@ -13,7 +13,7 @@ namespace EFCoreTest.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// 测试git提交 v2018.12.14
+        /// 测试git提交 v2018.12.14 -002
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
