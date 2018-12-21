@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreTest", "EFCoreTest\EFCoreTest.csproj", "{5610B056-DB88-4620-86E4-DBF91543C107}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaTest", "KafkaTest\KafkaTest.csproj", "{590DC9B8-BACE-4582-B92D-219CB27B295F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaTest", "KafkaTest\KafkaTest.csproj", "{590DC9B8-BACE-4582-B92D-219CB27B295F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisClientTest", "RedisClientTest\RedisClientTest.csproj", "{BAF8E850-DFAF-4E20-B43E-E49714F18BA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisClient", "RedisClient\RedisClient.csproj", "{9E022C04-A6A5-426C-975A-E99504ED6E93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{590DC9B8-BACE-4582-B92D-219CB27B295F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{590DC9B8-BACE-4582-B92D-219CB27B295F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{590DC9B8-BACE-4582-B92D-219CB27B295F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAF8E850-DFAF-4E20-B43E-E49714F18BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF8E850-DFAF-4E20-B43E-E49714F18BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF8E850-DFAF-4E20-B43E-E49714F18BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF8E850-DFAF-4E20-B43E-E49714F18BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E022C04-A6A5-426C-975A-E99504ED6E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E022C04-A6A5-426C-975A-E99504ED6E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E022C04-A6A5-426C-975A-E99504ED6E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E022C04-A6A5-426C-975A-E99504ED6E93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
