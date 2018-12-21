@@ -165,6 +165,16 @@ namespace RedisClient
         public void StringAdd(string value)
         {
             _redisManager.StringSetAdd(SessionKey, value);
+
+            //更新缓存过期时间
+            if (KeyExpire == -1)
+            {
+                _redisManager.KeyExpire(SessionKey, null);
+            }
+            else
+            {
+                _redisManager.KeyExpire(SessionKey, DateTime.Now.AddHours(KeyExpire));
+            }
         }
 
         /// <summary>

@@ -17,8 +17,14 @@ namespace RedisClientTest
                 };
 
                 session.SessionKey = "MenuTest";
+                //过期时间 小时；-1为长期
+                session.KeyExpire = 1;
+                //添加
                 session.StringAdd("测试" + DateTime.Now.ToString() + "：" + JsonConvert.SerializeObject(model));
+                //获取
                 string cc = session.GetStringValue();
+                //删除
+                session.Clear();
 
                 string aa = "";
             }
