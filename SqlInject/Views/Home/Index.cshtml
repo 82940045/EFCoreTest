@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+@model SqlInject.Models.TestModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <script src="~/Js/jquery-1.10.2.min.js"></script>
+    <script src="~/Js/jquery.unobtrusive-ajax.js"></script>
+</head>
+<body>
+    @using (Ajax.BeginForm("Index", "Home", null, new { id = "form1" }))
+    {
+        <div>
+            @Html.TextBoxFor(m => m.Name);
+            @Html.TextBoxFor(m => m.MobilePhone);
+            <button type="submit" value="提交">提交测试</button>
+        </div>
+    }
+    <script src="~/Js/Home.js"></script>
+</body>
+</html>

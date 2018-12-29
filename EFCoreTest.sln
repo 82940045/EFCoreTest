@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisClientTest", "RedisCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisClient", "RedisClient\RedisClient.csproj", "{9E022C04-A6A5-426C-975A-E99504ED6E93}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewFeatures", "NewFeatures\NewFeatures.csproj", "{77657037-DCF5-4F64-9C82-ADA941B7DA9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlInject", "SqlInject\SqlInject.csproj", "{89D9C7D1-73B9-41F5-B244-51C559982E80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{9E022C04-A6A5-426C-975A-E99504ED6E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E022C04-A6A5-426C-975A-E99504ED6E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E022C04-A6A5-426C-975A-E99504ED6E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77657037-DCF5-4F64-9C82-ADA941B7DA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77657037-DCF5-4F64-9C82-ADA941B7DA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77657037-DCF5-4F64-9C82-ADA941B7DA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77657037-DCF5-4F64-9C82-ADA941B7DA9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89D9C7D1-73B9-41F5-B244-51C559982E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D9C7D1-73B9-41F5-B244-51C559982E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D9C7D1-73B9-41F5-B244-51C559982E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D9C7D1-73B9-41F5-B244-51C559982E80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
