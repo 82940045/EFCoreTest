@@ -11,6 +11,7 @@ namespace Webstack
 {
     /// <summary>
     /// 防止sql注入
+    /// Api略作修改 参考 https://blog.csdn.net/u014654707/article/details/81104287 
     /// </summary>
     public class AntiSqlInjectAttribute : FilterAttribute, IActionFilter
     {
