@@ -1,98 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http.Controllers;
+using System.Web.Http.Filters;
 
-namespace Webstack
+namespace ApiTest.WebStack
 {
     /// <summary>
     /// 防止sql注入
-    /// Api略作修改 参考 https://blog.csdn.net/u014654707/article/details/81104287 
     /// </summary>
-    public class AntiSqlInjectAttribute : FilterAttribute, IActionFilter
+    public class AntiSqlInjectAttribute : ActionFilterAttribute
     {
-        /// <summary>
-        /// Action执行后
-        /// </summary>
-        /// <param name="filterContext"></param>
-        public void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-
-        }
-
-        /// <summary>
-        /// 过滤sql关键字，防止sql页面注入
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static string FilterSql(string s)
-        {
-            if (string.IsNullOrEmpty(s)) return string.Empty;
-            string theFilters = "=,',:, or ,select,update,insert,delete,declare,exec,drop,create,%,--";
-            if (!string.IsNullOrEmpty(theFilters))
-            {
-                foreach (string item in theFilters.Split(','))
-                {
-                    if (!string.IsNullOrEmpty(item))
-                    {
-                        s = Regex.Replace(s, item, "", RegexOptions.IgnoreCase);
-                    }
-                }
-            }
-            return s;
-        }
 
         /// <summary>
         /// Action执行前
         /// </summary>
         /// <param name="filterContext"></param>
-        public void OnActionExecuting(ActionExecutingContext filterContext)
+        public override void OnActionExecuting(HttpActionContext filterContext)
         {
-            try
+            base.OnActionExecuting(filterContext);
+            var actionParameters = filterContext.ActionDescriptor.GetParameters();
+
+            var actionArguments = filterContext.ActionArguments;
+
+            foreach (var p in actionParameters)
             {
-                var actionParameters = filterContext.ActionDescriptor.GetParameters();
+                var value = filterContext.ActionArguments[p.ParameterName];
 
-                foreach (var p in actionParameters)
+                var pType = p.ParameterType;
+
+                if (value == null)
                 {
-                    var value = filterContext.ActionParameters[p.ParameterName];
+                    continue;
+                }
+                //如果不是值类型或接口，不需要过滤
+                if (!pType.IsClass) continue;
 
-                    var pType = p.ParameterType;
-
-                    if (value == null)
+                if (value is string)
+                {
+                    //对string类型过滤
+                    filterContext.ActionArguments[p.ParameterName] = AntiSqlInject.Instance.GetSafetySql(value.ToString());
+                }
+                else
+                {
+                    //是一个class，对class的属性中，string类型的属性进行过滤
+                    var properties = pType.GetProperties();
+                    foreach (var pp in properties)
                     {
-                        continue;
-                    }
-                    //如果不是值类型或接口，不需要过滤
-                    if (!pType.IsClass) continue;
-
-                    if (value is string)
-                    {
-                        //对string类型过滤
-                        filterContext.ActionParameters[p.ParameterName] = AntiSqlInject.Instance.GetSafetySql(value.ToString());
-                    }
-                    else
-                    {
-                        //是一个class，对class的属性中，string类型的属性进行过滤
-                        var properties = pType.GetProperties();
-                        foreach (var pp in properties)
+                        var temp = pp.GetValue(value);
+                        if (temp == null)
                         {
-                            var temp = pp.GetValue(value);
-                            if (temp == null)
-                            {
-                                continue;
-                            }
-                            pp.SetValue(value, temp is string ? AntiSqlInject.Instance.GetSafetySql(temp.ToString()) : temp);
+                            continue;
                         }
+                        pp.SetValue(value, temp is string ? AntiSqlInject.Instance.GetSafetySql(temp.ToString()) : temp);
                     }
                 }
-            }
-            catch (Exception exp)
-            {
-                throw new Exception(exp.Message);
             }
         }
 
